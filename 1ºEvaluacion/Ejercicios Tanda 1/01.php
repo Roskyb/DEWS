@@ -55,7 +55,7 @@ and open the template in the editor.
         </strong>
     </p>
 
-    
+
     <!-- Punto 4 -->
 
     <p>
@@ -69,7 +69,7 @@ and open the template in the editor.
     </p>
 
 
-        
+
     <!-- Punto 5 -->
 
     <p>
@@ -79,33 +79,40 @@ and open the template in the editor.
             function numAleatorios($n, $startLimit, $endLimit)
             {
                 $randArray = [];
-                for ($i=0; $i < $n; $i++) { 
-                 $randArray[] = rand($startLimit, $endLimit);
-                }   
+                for ($i = 0; $i < $n; $i++) {
+                    $randArray[] = rand($startLimit, $endLimit);
+                }
 
                 return $randArray;
             }
 
-            print_r(numAleatorios(3,1, 20));
+            print_r(numAleatorios(3, 1, 20));
 
 
             ?>
         </strong>
     </p>
 
-        <!-- Punto 6 -->
+    <!-- Punto 6 -->
 
-        <p>
+    <p>
         <strong>
             <?php
 
-                $cifrado = ['h' => 'pan', 'o' => 'ta', 'l' => 'lo', 'a' => 'nes' ];
+            define("CIFRADO",     ['h' => 'pan', 'o' => 'ta', 'l' => 'lo', 'a' => 'nes']);
+            $cadena = "hola";
 
-                $cadena = "hola";
-
+            function cifrar($cadena): string
+            {
+                $cadena_cifrada = "";
                 foreach (str_split($cadena) as $char) {
-                    echo $cifrado[$char];
+                    $cadena_cifrada .= CIFRADO[$char];
                 }
+
+                return $cadena_cifrada;
+
+            }
+            echo cifrar($cadena)
 
             ?>
         </strong>
@@ -113,7 +120,7 @@ and open the template in the editor.
 
 
 
-    
+
 
 
 </body>
