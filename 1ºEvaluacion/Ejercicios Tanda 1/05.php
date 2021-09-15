@@ -41,7 +41,7 @@ and open the template in the editor.
         $personas = [];
 
         foreach ($db as $key => $value) {
-            if(in_array($pelicula, $value )){
+            if (in_array($pelicula, $value)) {
                 array_push($personas, $key);
             }
         }
@@ -49,23 +49,45 @@ and open the template in the editor.
         return $personas;
     }
 
-    function pelisFavoritasAlAzar($db){
+    function pelisFavoritasAlAzar($db)
+    {
+        foreach ($db as $key => $value) {
+            echo "<p>A " . $key . " le gustan las siguientes peliculas: </p>";
+            echo "<ul>";
+            $pelis = [];
+            do {
+                $peli = $value[rand(0, count($value)-1)];
+                if(!in_array($peli, $pelis)) $pelis[] = $peli;
+            } while (count($pelis) < 2);
 
-        
+            for ($i=0; $i < 2; $i++) { 
 
+                echo "<li>" . $pelis[$i] . "</li>";
+            }
+            echo "</ul>";
+        }
     }
 
 
     $personas = buscadorPersonasConPeliFavorita("Boku no Pico", $persona_peliculas);
+    
 
-    echo "<p>La pelicula Boku no Pico le gusta a las siguientes personas: </p>";
-    echo "<ul>";
 
-    foreach ($personas as $persona) {
+    if (count($personas) > 0) {
+        echo "<p>La pelicula Boku no Pico le gusta a las siguientes personas: </p>";
+        echo "<ul>";
 
-        echo "<li>" . $persona . "</li>";
+        foreach ($personas as $persona) {
+
+            echo "<li>" . $persona . "</li>";
+        }
+        echo "</ul>";
+    }else {
+        echo "<p>Esa pelicula es tan mala que no le gusta a nadie</p>";
     }
-    echo "</ul>";
+
+    pelisFavoritasAlAzar($persona_peliculas);
+
     ?>
 
 </body>

@@ -45,6 +45,8 @@ and open the template in the editor.
             './img/983-200x200.jpg',
             './img/983-200x200.jpg',
             './img/718-200x200.jpg',
+            './img/121-206x206.jpg',
+            './img/121-206x206.jpg',
         ];
 
         $mdma = [];
@@ -54,7 +56,6 @@ and open the template in the editor.
             if($contCol === 0) echo "<tr>";
             if (!in_array($imgM, $mdma)) {
                 array_push($mdma, $imgM);
-                
                 echo "<td><img src=\"$img\"></td>";
                 $contCol++;
             }
@@ -62,8 +63,6 @@ and open the template in the editor.
                 $contCol = 0;
                 echo "</tr>";
             } 
-
-
         };
 
 
