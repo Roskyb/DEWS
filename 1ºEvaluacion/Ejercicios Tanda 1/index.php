@@ -16,5 +16,6 @@ and open the template in the editor.
         <a href="./04.php">Ejercicio 4</a>
         <a href="./05.php">Ejercicio 5</a>
         <a href="./06.php">Ejercicio 6</a>
+        <a href="./06.php">Ejercicio 7</a>
     </body>
 </html>
