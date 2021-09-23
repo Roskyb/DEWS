@@ -9,7 +9,8 @@
 <body>
 	<ul>
 		<li>
-			<a href="01.php">Ejercicio 01</a>
+			<a href="./ejer01/01.php">Ejercicio 01</a>
+			<a href="ejer02/select_cantidad.php">Ejercicio 02</a>
 		</li>
 	</ul>
 </body>

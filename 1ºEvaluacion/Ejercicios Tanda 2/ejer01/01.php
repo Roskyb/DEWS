@@ -16,20 +16,27 @@
 <body>
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 		<label for="textoCrudo">Texto a Cifrar:</label>
-		<input type="text" name="textoCrudo" id="textoCrudo" value="<?php echo (textCorrecto() ? $_POST['textoCrudo'] : ' ') ?>">
+		<input type="text" name="textoCrudo" id="textoCrudo"
+		 value="<?php if(isset($_POST['textoCrudo']) && strlen($_POST['textoCrudo']) > 0) echo $_POST['textoCrudo'] ?>">
 		<?php
-
+		if(isset($_POST['textoCrudo']) && strlen($_POST['textoCrudo']) == 0) echo "Introduce un texto 🤬"
 		?>
 		<br>
 
 		<label>Desplazamiento</label><br>
-		<input type="radio" id="d3" name="desplazamiento" value="3">
+		<input type="radio" id="d3" name="desplazamiento" value="3" 
+			<?php if(isset($_POST['desplazamiento']) && $_POST['desplazamiento'] == 3) echo 'checked' ?>
+		>
 		<label for="d3">3</label>
 		<br>
-		<input type="radio" id="d5" name="desplazamiento" value="5">
+		<input type="radio" id="d5" name="desplazamiento" value="5"
+			<?php if(isset($_POST['desplazamiento']) && $_POST['desplazamiento'] == 5) echo 'checked' ?>
+		>
 		<label for="d5">5</label>
 		<br>
-		<input type="radio" id="d10" name="desplazamiento" value="10">
+		<input type="radio" id="d10" name="desplazamiento" value="10"
+		<?php if(isset($_POST['desplazamiento']) && $_POST['desplazamiento'] == 10) echo 'checked' ?>
+		>
 		<label for="d10">10</label>
 		<input type="submit" name="cesar" value="CIFRADO CESAR">
 
@@ -47,7 +54,8 @@
 			if (is_dir($dir)) {
 				if ($dh = opendir($dir)) {
 					while (($file = readdir($dh)) !== false) {
-						if (!($file == '.' || $file == '..')) echo "<option value=\"$file\">" . $file . "</option>";
+						if (!($file == '.' || $file == '..')) echo "<option value=\"$file\"" . 
+						 (isset($_POST['fichClave']) && $_POST['fichClave'] == $file ? 'selected' : '')  . ">" . $file . "</option>";
 					}
 					closedir($dh);
 				}
@@ -72,10 +80,7 @@
 				echo $textoCrudo . " => " . $textoCrifrado;
 
 			}
-		}
-
-
-		if (isset($_POST['sustitucion'])) {
+		}else if(isset($_POST['sustitucion'])){
 
 			$filePath = $dir . "/" . $_POST['fichClave'];
 			$claveCifrado = "";
@@ -86,13 +91,21 @@
 			}
 			fclose($handle);
 
-			if(strlen($claveCifrado) == 0) echo "Clave de cifrado no valida";
+			if(strlen($claveCifrado) == 0 || strlen($_POST['textoCrudo']) == 0) echo "Parametros no validos 😡";
 			else {
 				
+				$textoCrifrado = "";
+				$textoCrudo = $_POST['textoCrudo'];
+				for ($i = 0; $i < strlen($textoCrudo); $i++) {
+					$posicion = mb_ord($textoCrudo[$i]) - mb_ord('a');
+					$textoCrifrado = $textoCrifrado . $claveCifrado[$posicion];
+				}
+
+				echo $textoCrifrado;
 			}
-
-
 		}
+
+
 
 		?>
 	</div>
