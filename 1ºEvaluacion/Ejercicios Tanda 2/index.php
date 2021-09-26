@@ -11,6 +11,7 @@
 		<li>
 			<a href="./ejer01/01.php">Ejercicio 01</a>
 			<a href="ejer02/select_cantidad.php">Ejercicio 02</a>
+			<a href="ejer03/pedido.php">Ejercicio 02</a>
 		</li>
 	</ul>
 </body>
