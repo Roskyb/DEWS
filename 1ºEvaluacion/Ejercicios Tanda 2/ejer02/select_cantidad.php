@@ -4,7 +4,8 @@
 <head>
 	<title>Seleccionar Cantidad IMG</title>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -26,9 +27,11 @@
 		return $cont;
 	}
 	?>
-	<form action="eval_imag.php" method="post">
+	<form action="eval_imag.php"
+		method="post">
 		<label for="cantFotos">¿Cuantas imágenes deseas ver?</label>
-		<select id="cantFotos" name="cantFotos">
+		<select id="cantFotos"
+			name="cantFotos">
 			<?php
 			cuantasImg();
 			for ($i = 2; $i <= cuantasImg(); $i++) {
@@ -36,7 +39,9 @@
 			}
 			?>
 		</select><br>
-		<input type="submit" name="ver" value="VER IMAGENES">
+		<input type="submit"
+			name="ver"
+			value="VER IMAGENES">
 	</form>
 </body>
 
