@@ -2,5 +2,4 @@ Tornillo TY200;0.15
 Arandela;0.03
 Bisagra HG209;1.34
 Llave Allen;0.6
-Cable;19
-ERAFQEW;66
+perro;8;perrotxt

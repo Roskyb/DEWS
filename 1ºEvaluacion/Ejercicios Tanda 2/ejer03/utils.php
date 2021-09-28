@@ -20,3 +20,15 @@ function errorMessage($msg)
     </div>
     HTML;
 }
+
+function fileToArray($filePath)
+{
+    $content = [];
+    $handle = fopen($filePath, "r");
+    while (!feof($handle)) {
+        $line = fgets($handle);
+        $content[] = $line;
+    }
+    fclose($handle);
+    return $content;
+}

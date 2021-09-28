@@ -14,24 +14,15 @@ if (isset($_POST['nuevoArticulo'])) {
     if (empty($_POST['precioArticulo'])) $errorPrecio = "Campo precio obligatorio";
     else $precioArticulo = $_POST['precioArticulo'];
 
-    // SI LOS CAMPOS ESTAN LLENOS
+    // SI LOS CAMPOS ESTAN LLENOS AÑADIMOS EL ARTICULO
     if (!empty($nombreArticulo) && !empty($precioArticulo)) {
-        aniadirArticulo($nombreArticulo, $precioArticulo);
+        if (!empty($_FILES['descripcionArticulo'])) {
+            $desc = $_FILES['descripcionArticulo'];
+            aniadirArticuloATabla($nombreArticulo, $precioArticulo, $desc);
+        }
     }
 }
 
-
-function fileToArray($filePath)
-{
-    $content = [];
-    $handle = fopen($filePath, "r");
-    while (!feof($handle)) {
-        $line = fgets($handle);
-        $content[] = $line;
-    }
-    fclose($handle);
-    return $content;
-}
 
 function dibujarArticulos()
 {
@@ -42,59 +33,55 @@ function dibujarArticulos()
         $nombre = $art[0];
         $precio = trim($art[1]);
 
+
         $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $url = strtok($url, "?");
         $nombre_url = str_replace(' ', '%20', $nombre);
-        $enlace = $url . "?nombre=$nombre_url&precio=$precio";
-
-
+        $precioTotal = calcularPrecio($precio);
+        $enlace = $url . "?nombre=$nombre_url&precio=$precio&precio_total=" . $precioTotal;
+        $descA = '';
+        if (isset($art[2])) {
+            $desc = trim($art[2]);
+            $descHref = $url . '/' . $desc; // corregir 
+            $descA = "<a href='$descHref'>$desc</a>";
+        }
         echo <<<HTML
             <tr>
                 <th>$nombre</th>
                 <td>$precio €</td>
                 <td><a href=$enlace>Añadir al carrito</a></td>
+                <td>
+                   $descA
+                </td>
             </tr>
-            HTML;
+        HTML;
     }
 }
 
 
 
-// function guardarArticulo()
-// {
-//     if (isset($_SESSION['carrito'])) {
-//         if (
-//             isset($_GET['nombre']) && !empty($_GET['nombre'])
-//             && isset($_GET['precio']) && !empty($_GET['precio'])
-//         ) {
-//             $_SESSION['carrito'][] = [$_GET['nombre'], $_GET['precio']];
-//         }else {
 
-//         }
-
-//     } else $_SESSION['carrito'] = [];
-// }
-
-function aniadirArticulo($nombre, $precio)
+function aniadirArticuloATabla($nombre, $precio, $desc = '')
 {
     $articulo = $nombre . ";" . $precio;
     $filePath = './articulos.txt';
     $file = fopen($filePath, "a");
+    if ($desc != '') {
+        move_uploaded_file($_FILES['descripcionArticulo']['tmp_name'], './' . $nombre . '.txt');
+        $articulo .= ';' . $nombre . "txt";
+    }
+
     fwrite($file, "\n");
     fwrite($file, $articulo);
     fclose($file);
 }
 
-function calcularPrecio()
+
+function calcularPrecio($precioActual)
 {
-    if (!isset($_SESSION['carrito'])) echo 0 . '€';
-    else {
-        $precio = 0;
-        foreach ($_SESSION['carrito'] as $art) {
-            $precio += $art[1];
-        }
-        echo $precio . '€';
-    }
+    if (isset($_GET['precio']) && isset($_GET['precio_total'])) {
+        return $precioActual + $_GET['precio_total'];
+    } else return $precioActual;
 }
 
 
@@ -130,7 +117,11 @@ function calcularPrecio()
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="3" class="text-center display-6">Precio: <?php calcularPrecio() ?></th>
+                    <th colspan="3" class="text-center display-6">Precio:
+                        <?php
+                        if (isset($_GET['precio_total']) && $_GET['precio_total'] > 0) echo $_GET['precio_total'] . "€";
+                        else echo 0 . "€";
+                        ?></th>
                 </tr>
             </tfoot>
         </table>

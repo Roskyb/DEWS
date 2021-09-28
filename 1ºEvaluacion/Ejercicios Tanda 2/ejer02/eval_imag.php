@@ -94,22 +94,21 @@ function dibujarPagina()
 		if (isset($_POST['valorar']) && isset($_POST['fotos'])) {
 			if (count($_POST['fotos']) > 0) {
 				$ip = $_SERVER["REMOTE_ADDR"];
-				$lineaNueva = $ip . ": ";
+				$lineaNueva = "no se como sacar la ip" . ": ";
 				$filePath = './log.txt';
 				foreach ($_POST['fotos'] as $foto) {
 					$lineaNueva .= $foto . " ";
-					echo "fajs";
 				}
 				$file = fopen($filePath, "a");
-				fwrite($file, "\n");
 				fwrite($file, $lineaNueva);
+				fwrite($file, "\n");
 				fclose($file);
 
 				echo "<h1>Gracias por valorar las imagenes</h1><br>";
 				echo "<a href='./select_cantidad.php'>Go home</a>";
 			} else {
-				echo "<h1>SENTIMOS QUE SU GUSTO SEA UNA MIERDA </h1><br>";
-				echo "<a href='./select_cantidad.php'>SI QUIERE RECCTIFICAR CLICK AQUI</a>";
+				echo "<h1>una pena  </h1><br>";
+				echo "<a href='./select_cantidad.php'>SI QUIERE RECTIFICAR CLICK AQUI</a>";
 			}
 		} else {
 			dibujarPagina();
