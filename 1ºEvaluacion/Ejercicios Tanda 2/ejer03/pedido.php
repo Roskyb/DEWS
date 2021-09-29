@@ -33,7 +33,6 @@ function dibujarArticulos()
         $nombre = $art[0];
         $precio = trim($art[1]);
 
-
         $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $url = strtok($url, "?");
         $urlDescarga = $url;
