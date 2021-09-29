@@ -36,14 +36,15 @@ function dibujarArticulos()
 
         $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $url = strtok($url, "?");
+        $urlDescarga = $url;
         $nombre_url = str_replace(' ', '%20', $nombre);
         $precioTotal = calcularPrecio($precio);
         $enlace = $url . "?nombre=$nombre_url&precio=$precio&precio_total=" . $precioTotal;
         $descA = '';
         if (isset($art[2])) {
             $desc = trim($art[2]);
-            $descHref = $url . '/' . $desc; // corregir 
-            $descA = "<a href='$descHref'>$desc</a>";
+            $descHref = str_replace("pedido.php", trim($art[2]), $urlDescarga);
+            $descA = "<a href='$descHref' download>$desc</a>";
         }
         echo <<<HTML
             <tr>
@@ -68,7 +69,7 @@ function aniadirArticuloATabla($nombre, $precio, $desc = '')
     $file = fopen($filePath, "a");
     if ($desc != '') {
         move_uploaded_file($_FILES['descripcionArticulo']['tmp_name'], './' . $nombre . '.txt');
-        $articulo .= ';' . $nombre . "txt";
+        $articulo .= ';' . $nombre . ".txt";
     }
 
     fwrite($file, "\n");
