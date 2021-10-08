@@ -4,7 +4,10 @@ if (!isset($_SESSION['userdata'])) {
 	header('Location: ./entrada.php');
 }
 
-if(isset($_POST['tipo']))
+
+if (isset($_GET['tipo']) && isset($_GET['plato'])) {
+	$_SESSION['userdata']['comanda'][$_GET['tipo']] = $_GET['plato'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,15 +29,15 @@ if(isset($_POST['tipo']))
 			<div class="col-3">
 				<h3>Haga su pedido</h3>
 				<ul class="list-group">
-					<?php 
-						$tipos_platos = ['primero', 'segundo', 'postre', 'bebida'];
-						foreach ($tipos_platos as $plato) {
-							$url = './pedido_plato.php?tipo='.$plato;
-							$title = ucfirst($plato);
-							echo <<<HTML
+					<?php
+					$tipos_platos = ['primero', 'segundo', 'postre', 'bebida'];
+					foreach ($tipos_platos as $plato) {
+						$url = './pedido_plato.php?tipo=' . $plato;
+						$title = ucfirst($plato);
+						echo <<<HTML
 								<li class="list-group-item"><a href=$url>$title</a></li>
 							HTML;
-						}
+					}
 					?>
 				</ul>
 			</div>
@@ -42,8 +45,20 @@ if(isset($_POST['tipo']))
 				<h3>Su eleccion:</h3>
 				<div class="card">
 					<div class="card-body">
-						
+						<?php
+						foreach ($_SESSION['userdata']['comanda'] as $key => $value) {
+							echo '<ul>';
+							echo "<li><strong class='text-uppercase'>$key</strong> </li>";
+							echo '<ul>';
+							echo "<li>$value</li>";
+							echo '</ul>';
+							echo '</ul>';
+						}
+
+						echo "<a href='finpedido.php' class='btn btn-warning'><strong>QUE ME LO TRAIGA UN NEGRO EN BICI 🥵</strong></a>"
+						?>
 					</div>
+
 				</div>
 
 			</div>

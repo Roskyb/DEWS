@@ -27,8 +27,15 @@ if (!isset($_SESSION['userdata'])) {
 			<div class="col-8">
 				<div class="card">
 					<div class="card-body">
-						<form action="" method="POST">
-
+						<form action="pedido.php" method="GET">
+							<small class="text-danger">
+								<?php 
+								if(isset($_SESSION['userdata']['comanda'][$_GET['tipo']])){
+									$plato_viejo = $_SESSION['userdata']['comanda'][$_GET['tipo']];
+									echo "Estas a punto de cambiar $plato_viejo por:";
+								}
+								?>
+							</small>
 							<select class="form-control" name="plato" id="plato">
 								<?php
 								$platos = getPlatesByType($tipo);
@@ -41,7 +48,8 @@ if (!isset($_SESSION['userdata'])) {
 
 								?>
 							</select>
-							<input class="btn btn-success mt-2" type="submit" name="<?php echo $tipo ?>" value="<?php echo 'Elegir '.$tipo ?>">
+							<input type="hidden" name="tipo" value="<?php echo $tipo ?>">
+							<input class="btn btn-success mt-2" type="submit" value="<?php echo 'Elegir '.$tipo ?>">
 						</form>
 					</div>
 				</div>

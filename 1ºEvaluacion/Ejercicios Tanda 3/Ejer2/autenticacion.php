@@ -8,7 +8,7 @@ else {
 	) {
 		if (autentica($_POST['username'], $_POST['pass'])){
 			session_start();
-			$_SESSION['userdata'] = [$_POST['username'] => getDiscount($_POST['username'])];
+			$_SESSION['userdata'] =  ["usuario" => $_POST['username'],"descuento" => getDiscount($_POST['username']), "comanda" => []];
 			header('Location: ./pedido.php');
 		}
 		else header('Location: entrada.php?error');
