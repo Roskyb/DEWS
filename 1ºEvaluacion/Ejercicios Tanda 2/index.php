@@ -12,7 +12,7 @@
 			<a href="./ejer01/01.php">Ejercicio 01</a>
 			<a href="ejer02/select_cantidad.php">Ejercicio 02</a>
 			<a href="ejer03/pedido.php">Ejercicio 03</a>
-			<a href="ejer04/login.php">Ejercicio 03</a>
+			<a href="ejer04/login.php">Ejercicio 04</a>
 		</li>
 	</ul>
 </body>
