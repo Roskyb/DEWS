@@ -1,4 +1,5 @@
 <?php
+include 'utils/libmenu.php';
 session_start()
 ?>
 
@@ -29,19 +30,29 @@ session_start()
 				<div class="card-body">
 					<h3>Su eleccion:</h3>
 					<?php
+					$precioBruto = 0;
 					if (isset($_SESSION['userdata']['comanda'])) {
 						foreach ($_SESSION['userdata']['comanda'] as $key => $value) {
+							$precio = getPlatePrice($value);
+							$precioBruto = $precioBruto + intval($precio);
 							echo '<ul>';
 							echo "<li><strong class='text-uppercase'>$key</strong> </li>";
 							echo '<ul>';
-							echo "<li>$value</li>";
+							echo "<li>$value - ". $precio ." €</li>";
 							echo '</ul>';
 							echo '</ul>';
+						}
+						if(isset($_SESSION['userdata']['descuento']) && $_SESSION['userdata']['descuento'] > 0){
+							$descuento =intval($_SESSION['userdata']['descuento']);
+							$precioConDescuento = $precioBruto - ($precioBruto * ($descuento/100));
+							echo "<strong>El precio total es: <strike class='text-danger'>$precioBruto €</strike> $precioConDescuento €  </strong>";
+						}else {
+							echo "<strong>El precio total es: $precioBruto €</strong>";
 						}
 					}
 
 					?>
-					<a href="" class="btn btn-success">Hacer otro pedido</a>
+					<a href="pedido.php?resetPlate" class="btn btn-success">Hacer otro pedido</a>
 				</div>
 			</div>
 		</div>

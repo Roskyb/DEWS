@@ -4,6 +4,9 @@ if (!isset($_SESSION['userdata'])) {
 	header('Location: ./entrada.php');
 }
 
+if(isset($_GET['resetPlate'])){
+	$_SESSION['userdata']['comanda'] = [];
+}
 
 if (isset($_GET['tipo']) && isset($_GET['plato'])) {
 	$_SESSION['userdata']['comanda'][$_GET['tipo']] = $_GET['plato'];

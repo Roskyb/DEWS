@@ -50,5 +50,5 @@ function getPlates()
 
 function getPlatePrice($plate)
 {
-	return getPlates()[$plate];
+	return getPlates()[$plate]['precio'];
 }
