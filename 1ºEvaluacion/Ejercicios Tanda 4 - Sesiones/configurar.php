@@ -3,6 +3,7 @@ include 'utils.php';
 
 $temas = ['Politica', 'PH', 'ESPAÑA', 'Ingenieria'];
 
+
 if (isset($_POST['jugar'])) {
 	if (isset($_POST['preguntas'])) {
 		$cont = 0;
@@ -15,6 +16,8 @@ if (isset($_POST['jugar'])) {
 		}
 		if ($cont < 3) {
 			$errorMsg = "Debes elegir al menos 3 temas";
+		}else {
+			header('Location: jugar.php');
 		}
 	}
 }

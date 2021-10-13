@@ -1,6 +1,7 @@
 <?php
 function dibujarConfigurador()
 {
+
 	echo "<table class='table'>";
 	echo "<thead>";
 	echo "	<tr>
@@ -17,7 +18,9 @@ function dibujarConfigurador()
 
 		echo "	<tr>
 						<th scope='row'>$i</th>
-						<td><input type='text' class='form-control'  name=preguntas[$i][tema]></td>
+						<td><input type='text' class='form-control'  name=preguntas[$i][tema] value=" .
+			(isset($_POST['preguntas'][$i]['tema']) ? $_POST['preguntas'][$i]['tema'] : '')
+			. "></td>
 						<td>
 							<select class='form-select' name=preguntas[$i][cantidadPreguntas]>
 								";
@@ -26,7 +29,12 @@ function dibujarConfigurador()
 							</select>
 						</td>
 						<td>
-							<input class='form-check-input' type='checkbox' name=preguntas[$i][guardarErrores] ><label for=c$i class='form-check-label'>Grabar fallos</label>
+						";
+		echo "
+		<input class='form-check-input' type='checkbox' name=preguntas[$i][guardarErrores] " .
+			(isset($_POST['preguntas'][$i]['guardarErrores']) ? 'checked' : '') . ">" .
+			"<label for=preguntas[$i][guardarErrores]  class='form-check-label'>Grabar fallos</label>";
+		echo "
 						</td>
 					</tr>";
 	}
@@ -39,5 +47,5 @@ function dibujarConfigurador()
 
 function prettyArr($arr)
 {
-	print("<pre>".print_r($arr,true)."</pre>");
+	print("<pre>" . print_r($arr, true) . "</pre>");
 }
