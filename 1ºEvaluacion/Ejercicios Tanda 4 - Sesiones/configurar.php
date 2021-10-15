@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include 'utils.php';
 
 $temas = ['Politica', 'PH', 'ESPAÑA', 'Ingenieria'];
@@ -9,14 +11,25 @@ if (isset($_POST['jugar'])) {
 		$cont = 0;
 		$repes = [];
 		for ($i = 1; $i <= 8; $i++) {
-			if (!empty($_POST['preguntas'][$i]['tema'] && !in_array($_POST['preguntas'][$i]['tema'], $repes))) {
+			if (
+				!empty($_POST['preguntas'][$i]['tema'])
+				&& !in_array($_POST['preguntas'][$i]['tema'], $repes)
+				&& $_POST['preguntas'][$i]['cantidadPreguntas'] > 0
+			) {
 				$repes[] = $_POST['preguntas'][$i]['tema'];
 				$cont += 1;
+			} else {
+				if (!isset($_POST['preguntas'][$i]['tema']))
+					$configuracion[$_POST['preguntas'][$i]['tema']] = [
+						"cantidad" => intval($_POST['preguntas'][$i]['cantidadPreguntas']),
+						"grabarFallos" => $_POST['preguntas'][$i]['guardarErrores']
+					];
 			}
 		}
 		if ($cont < 3) {
-			$errorMsg = "Debes elegir al menos 3 temas";
-		}else {
+			$errorMsg = "Debes elegir al menos 3 temas y una cantidad minima de 1 pregunta";
+		} else {
+			$_SESSION['partida'] = $configuracion;
 			header('Location: jugar.php');
 		}
 	}

@@ -1,12 +1,26 @@
 <?php
+session_start();
+// recogemos los temas seleccionados
+print($_SESSION['partida']);
+
 
 
 class PreguntaFormulario {
-    public $preguntas = [];
+    public $preguntas;
+    public $cantPreguntas;
+    public $fallos;
 
     function __construct($preguntas){
+        $this->cantPreguntas = 0;
         $this->preguntas = shuffle($preguntas);
     }
+
+
+    public function draw()
+    {
+        include './form_pregunta.php';
+    }
+    
 
 }
 class Pregunta
@@ -26,44 +40,6 @@ class Pregunta
 
 }
 
-function dibujarPreguntas($pregunta)
-{
-    $action = $_SERVER['self'];
-    echo "<form action=$action method='POST'>";
-    echo <<<HTML
-                        <div class="item col-4">
-                            <div class="col-md-12 col-xs-8  border-5 border-bg-danger">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading bg-primary text-white p-1">
-                                        <h4>TEMA - Nº1</h4>
-                                    </div>
-                                    <div class="panel-body">
-                                        <p>pregunta pregunta pregutna pregunte?</p>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> Risposta uno — Io prenderei questa
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Questa è la risposta due;
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled=""> E volendo anche la tre
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="panel-footer">
-                                        <p> <strong>PREGUNTA 1 / 3</strong> </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </form>
-        HTML;
-}
 
 ?>
 
@@ -90,9 +66,8 @@ function dibujarPreguntas($pregunta)
 
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                     <div class="row justify-content-center">
-
+                        <?php  ?>
                     </div>
-
                 </form>
 
             </div>
