@@ -49,3 +49,100 @@ function prettyArr($arr)
 {
 	print("<pre>" . print_r($arr, true) . "</pre>");
 }
+
+$temas = [
+	'Politica' => [
+		"preguntas" => [
+			[
+				"pregunta" => "1Pol¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			],
+			[
+				"pregunta" => "2Pol¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			],
+			[
+				"pregunta" => "3Pol¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			],
+			[
+				"pregunta" => "4Pol¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			]
+		]
+	],
+	'PH' => [
+		"preguntas" => [
+			[
+				"pregunta" => "PH¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			],
+			[
+				"pregunta" => "PH¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			],
+			[
+				"pregunta" => "PH¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			],
+			[
+				"pregunta" => "PH¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			]
+		]
+	], 'ESPAÑA' => [
+		"preguntas" => [
+			[
+				"pregunta" => "ESP¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			],
+			[
+				"pregunta" => "ESP¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			],
+			[
+				"pregunta" => "ESP¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			],
+			[
+				"pregunta" => "ESP2¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			]
+		]
+	], 'Ingenieria' => [
+		"preguntas" => [
+			[
+				"pregunta" => "1ING¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			],
+			[
+				"pregunta" => "2ING¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			],
+			[
+				"pregunta" => "3ING¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			],
+			[
+				"pregunta" => "4ING¿Quien es el presidente de Japon?",
+				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"correcta" => "Fumio Kishida"
+			]
+		]
+	]
+];

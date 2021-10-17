@@ -1,9 +1,8 @@
 <?php
 session_start();
-
+$_SESSION['juego'] = [];
 include 'utils.php';
 
-$temas = ['Politica', 'PH', 'ESPAÑA', 'Ingenieria'];
 
 
 if (isset($_POST['jugar'])) {
@@ -17,22 +16,43 @@ if (isset($_POST['jugar'])) {
 				&& $_POST['preguntas'][$i]['cantidadPreguntas'] > 0
 			) {
 				$repes[] = $_POST['preguntas'][$i]['tema'];
+				$tema = $_POST['preguntas'][$i]['tema'];
+				$cantPreguntas = $_POST['preguntas'][$i]['cantidadPreguntas'];
+				$grabarFallos = isset($_POST['preguntas'][$i]['guardarErrores']) ? true : false;
+				crearJuego($tema, $cantPreguntas, $grabarFallos, $temas[$tema]['preguntas']);
 				$cont += 1;
-			} else {
-				if (!isset($_POST['preguntas'][$i]['tema']))
-					$configuracion[$_POST['preguntas'][$i]['tema']] = [
-						"cantidad" => intval($_POST['preguntas'][$i]['cantidadPreguntas']),
-						"grabarFallos" => $_POST['preguntas'][$i]['guardarErrores']
-					];
 			}
 		}
 		if ($cont < 3) {
 			$errorMsg = "Debes elegir al menos 3 temas y una cantidad minima de 1 pregunta";
+			$_SESSION['juego'] = [];
 		} else {
-			$_SESSION['partida'] = $configuracion;
 			header('Location: jugar.php');
 		}
 	}
+}
+
+
+function crearJuego($tema, $cantidadPreguntas,  $grabarFallos, $preguntas)
+{
+	// Un juego consta de X tematicas que contienen x preguntas
+	if (!isset($_SESSION['juego'])) $_SESSION['juego'] = [];
+	$conf[] = ["cantidadPreguntas" => $cantidadPreguntas];
+	if ($grabarFallos) $conf["fallos"] =  0;
+	$randomQuestions = array_rand($preguntas, $cantidadPreguntas);
+	$preguntasAleatorias = [];
+	if(!is_int($randomQuestions)){
+		foreach($randomQuestions as $value ){
+			$preguntasAleatorias[] = $preguntas[$value];
+		}
+	}else $preguntasAleatorias[] = $preguntas[$randomQuestions];
+	
+
+	$conf['preguntas'] = $preguntasAleatorias;
+	$conf['indice'] = 0;
+	$conf['cantPreguntas'] = $cantidadPreguntas;
+
+	$_SESSION['juego'][$tema] = $conf;
 }
 
 ?>
