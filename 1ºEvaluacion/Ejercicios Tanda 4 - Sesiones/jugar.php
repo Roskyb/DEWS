@@ -8,18 +8,23 @@ function dibujarPreguntas()
     foreach ($_SESSION['juego'] as $tema => $datos) {
             if(isset($_POST[$tema])){
                 if(isset($_POST['radio' . $tema]) && isset($datos['preguntas'][$datos['indice']]['correcta'])){
-                    if($_POST['radio' . $tema] != $datos['preguntas'][$datos['indice']]['correcta']){
-                        if(isset($datos['fallos']))
-                            $datos['fallos']++;
+                    if($_POST['radio' . $tema] != $datos['preguntas'][$_SESSION['juego'][$tema]['indice']]['correcta']){
+                        if(isset( $_SESSION['juego'][$tema]['fallos']))
+                            $_SESSION['juego'][$tema]['fallos']++;
+                        else {
+                            $_SESSION['juego'][$tema]['aciertos']++;
+                        }
+                        
                     }
                     $_SESSION['juego'][$tema]['indice']++;
                 }
             }
-            if($datos['indice'] >= $datos['cantPreguntas']){
-               echo "terminado";
+            $aciertos =  $_SESSION['juego'][$tema]['aciertos'] . "/" . $datos['cantPreguntas'];
+            if( $_SESSION['juego'][$tema]['indice'] == $datos['cantPreguntas']){
+               echo "Hacertaste " . $aciertos;
             }else {
-                $pregunta = $datos['preguntas'][$datos['indice']]['pregunta'];
-                $respuestas = $datos['preguntas'][$datos['indice']]['respuestas'];
+                $pregunta = $datos['preguntas'][$_SESSION['juego'][$tema]['indice']]['pregunta'];
+                $respuestas = $datos['preguntas'][ $_SESSION['juego'][$tema]['indice']]['respuestas'];
                 include 'form_pregunta.php';    
 
             }

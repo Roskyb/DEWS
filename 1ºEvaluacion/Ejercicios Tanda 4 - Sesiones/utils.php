@@ -54,94 +54,95 @@ $temas = [
 	'Politica' => [
 		"preguntas" => [
 			[
-				"pregunta" => "1Pol¿Quien es el presidente de Japon?",
+				"pregunta" => "¿Quien es el presidente de Japon?",
 				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
 				"correcta" => "Fumio Kishida"
 			],
 			[
-				"pregunta" => "2Pol¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "¿Como se domina al presidente de españa en el parlamento?",
+				"respuestas" => ["Mc Pedro", "Perro Sanchez", "Apedra"],
+				"correcta" => "Perro Sanchez"
 			],
 			[
-				"pregunta" => "3Pol¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "Para ser elegido representate de un partido politico en determinada circunscripción, 
+				ademas de tener que cumplir con los requisitos minimos de condición. Que formulario de la deves rellena?",
+				"respuestas" => ["Modelo 59-A", "Modelo 69-A", "Modelo 69-B"],
+				"correcta" => "Modelo 69-B"
 			],
 			[
-				"pregunta" => "4Pol¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "En politica que lados hay?",
+				"respuestas" => ["Izquierda y derecha", "Arriba y abajo", "Pregunta trampa, la respuesta es mis cojones"],
+				"correcta" => "Pregunta trampa, la respuesta es mis cojones"
 			]
 		]
 	],
 	'PH' => [
 		"preguntas" => [
 			[
-				"pregunta" => "PH¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "¿Quien domina el top?",
+				"respuestas" => ["Isabel Yasuo", "El mafioso de Sinchan", "Ander Ezequiel Vicente"],
+				"correcta" => "Isabel Yasuo"
 			],
 			[
-				"pregunta" => "PH¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "Que contiene PH",
+				"respuestas" => ["Videos", "Poemas", "VideoJuegos"],
+				"correcta" => "Videos"
 			],
 			[
-				"pregunta" => "PH¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "En que lado del reproductor se encuentra \" Enviar a pantalla \" ?",
+				"respuestas" => ["Arriba a la derecha", "Abajo en el centro", "No sale"],
+				"correcta" => "Arriba a la derecha"
 			],
 			[
-				"pregunta" => "PH¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "Segun las políticas de privacidad de la página puedes subir contenido de terceros sin verificación",
+				"respuestas" => ["Depende la hora del día", "No", "Si"],
+				"correcta" => "No"
 			]
 		]
 	], 'ESPAÑA' => [
 		"preguntas" => [
 			[
-				"pregunta" => "ESP¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "España es el mejor páis del mundo",
+				"respuestas" => ["No se que quieres que responda...", "Probablemente", "Si..."],
+				"correcta" => "No se que quieres que responda..."
 			],
 			[
-				"pregunta" => "ESP¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "Con que se hizo la bandera de españa",
+				"respuestas" => ["Papel y boli", "Colillas de cigarros pintadas", "2 gotas de sangre y un rayo de sol"],
+				"correcta" => "2 gotas de sangre y un rayo de sol"
 			],
 			[
-				"pregunta" => "ESP¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "Eres español si vives en ceuto o en melilla",
+				"respuestas" => ["No", "Si", "Dicen que si pero no estoy seguro"],
+				"correcta" => "Dicen que si pero no estoy seguro"
 			],
 			[
-				"pregunta" => "ESP2¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "Si es poseedor de un carnet de tipo b en territorio español el cual tiene una antiguiedad superior a dos años, puede usted circula con vehiculos con un MMA superior a 4250kg impulsado por combustibles alternativos?",
+				"respuestas" => ["Con y sin carnet, a mi nadie me manda", "Si", "No"],
+				"correcta" => "Si"
 			]
 		]
 	], 'Ingenieria' => [
 		"preguntas" => [
 			[
-				"pregunta" => "1ING¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
+				"pregunta" => "1+1=?",
+				"respuestas" => ["2", "3", "4"],
 				"correcta" => "Fumio Kishida"
 			],
 			[
-				"pregunta" => "2ING¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "Cuantos lados tiene un triangulo",
+				"respuestas" => ["3", "Tris", "2"],
+				"correcta" => "3"
 			],
 			[
-				"pregunta" => "3ING¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "Por cuantas esquinas esta compuesto un circulo ",
+				"respuestas" => ["Infinity", "0", "Yo que se"],
+				"correcta" => "Infinity"
 			],
 			[
-				"pregunta" => "4ING¿Quien es el presidente de Japon?",
-				"respuestas" => ["Doraemon", "Nobita", "Fumio Kishida"],
-				"correcta" => "Fumio Kishida"
+				"pregunta" => "Profe puedo usar calculadora?",
+				"respuestas" => ["Ininglish plish", "No", "Si"],
+				"correcta" => "Si"
 			]
 		]
 	]

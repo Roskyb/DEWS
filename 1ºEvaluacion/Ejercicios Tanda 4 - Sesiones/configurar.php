@@ -51,6 +51,7 @@ function crearJuego($tema, $cantidadPreguntas,  $grabarFallos, $preguntas)
 	$conf['preguntas'] = $preguntasAleatorias;
 	$conf['indice'] = 0;
 	$conf['cantPreguntas'] = $cantidadPreguntas;
+	$conf['aciertos'] = 0;
 
 	$_SESSION['juego'][$tema] = $conf;
 }
