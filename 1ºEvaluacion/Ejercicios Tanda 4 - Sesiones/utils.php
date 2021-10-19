@@ -147,3 +147,10 @@ $temas = [
 		]
 	]
 ];
+
+function writeFile($name, $text)
+{
+	$myfile = fopen($name . ".txt", "w");
+	fwrite($myfile,  $text);
+	fclose($myfile);
+}

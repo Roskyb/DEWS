@@ -11,10 +11,11 @@
 				<?php
 				foreach ($respuestas as $respuesta) {
 					$name = 'radio' . $tema;
+					$value = htmlspecialchars($respuesta);
 					echo <<<HTML
 						<div class="radio">
 							<label>
-								<input type="radio" name=$name id="optionsRadios1" value="option1" checked=""> $respuesta
+								<input type="radio" name=$name id="optionsRadios1" value='$value' checked=""> $respuesta
 							</label>
 						</div>
 						HTML;

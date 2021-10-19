@@ -4,33 +4,46 @@ session_start();
 // recogemos los temas seleccionados
 function dibujarPreguntas()
 {
-    if(!isset($_SESSION['juego'])) return;
+    if (!isset($_SESSION['juego'])) return;
+    $cont = count($_SESSION['juego']);
     foreach ($_SESSION['juego'] as $tema => $datos) {
-            if(isset($_POST[$tema])){
-                if(isset($_POST['radio' . $tema]) && isset($datos['preguntas'][$datos['indice']]['correcta'])){
-                    if($_POST['radio' . $tema] != $datos['preguntas'][$_SESSION['juego'][$tema]['indice']]['correcta']){
-                        if(isset( $_SESSION['juego'][$tema]['fallos']))
-                            $_SESSION['juego'][$tema]['fallos']++;
-                        else {
-                            $_SESSION['juego'][$tema]['aciertos']++;
-                        }
-                        
-                    }
-                    $_SESSION['juego'][$tema]['indice']++;
+        if (isset($_POST[$tema])) {
+            if (isset($_POST['radio' . $tema]) && isset($datos['preguntas'][$datos['indice']]['correcta'])) {
+                if (htmlspecialchars($_POST['radio' . $tema]) != $_SESSION['juego'][$tema]['preguntas'][$_SESSION['juego'][$tema]['indice']]['correcta']) {
+                    if (isset($_SESSION['juego'][$tema]['fallos']))
+                        $_SESSION['juego'][$tema]['fallos'] += 1;
+                    if (isset($_SESSION['textofallos'])) {
+                        $_SESSION['textofallos'] .= $tema . " - " . $_SESSION['juego'][$tema]['indice']  . ". " . $datos['preguntas'][$_SESSION['juego'][$tema]['indice']]['pregunta'] . " ---> " . $datos['preguntas'][$_SESSION['juego'][$tema]['indice']]['correcta'] . "\n";
+                    } else $_SESSION['textofallos'] = "";
+                } else {
+                    $_SESSION['juego'][$tema]['aciertos'] += 1;
                 }
+                $_SESSION['juego'][$tema]['indice']++;
             }
-            $aciertos =  $_SESSION['juego'][$tema]['aciertos'] . "/" . $datos['cantPreguntas'];
-            if( $_SESSION['juego'][$tema]['indice'] == $datos['cantPreguntas']){
-               echo "Hacertaste " . $aciertos;
-            }else {
-                $pregunta = $datos['preguntas'][$_SESSION['juego'][$tema]['indice']]['pregunta'];
-                $respuestas = $datos['preguntas'][ $_SESSION['juego'][$tema]['indice']]['respuestas'];
-                include 'form_pregunta.php';    
-
+            
+        }
+        $aciertos =  $_SESSION['juego'][$tema]['aciertos'] . "/" . $datos['cantPreguntas'];
+        if ($_SESSION['juego'][$tema]['indice'] == $datos['cantPreguntas']) {
+            echo "<div class='col-4'>";
+            echo "<strong>Acertaste:</strong> " . $aciertos . "<br>";
+            if (isset($_SESSION['juego'][$tema]['fallos'])) echo "<strong>Fallaste:</strong>" . $_SESSION['juego'][$tema]['fallos'] . "<br>";
+            echo "</div>";
+            $cont--;
+        } else {
+            $pregunta = $datos['preguntas'][$_SESSION['juego'][$tema]['indice']]['pregunta'];
+            $respuestas = $datos['preguntas'][$_SESSION['juego'][$tema]['indice']]['respuestas'];
+            include 'form_pregunta.php';
+        }
+        if ($cont == 0) {
+            if (isset($_SESSION['textofallos'])) {
+                $fecha = new DateTime();
+                $name = "fallos" . $fecha->getTimestamp();
+                writeFile($name, $_SESSION['textofallos']);
+                echo "<a href='$name.txt'>Ver fallos</a>";
+                $_SESSION['textofallos'] = "";
             }
+        }
     }
-
-    
 }
 
 
@@ -59,8 +72,8 @@ function dibujarPreguntas()
 
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                     <div class="row justify-content-center">
-                        <?php  
-                            dibujarPreguntas()
+                        <?php
+                        dibujarPreguntas()
                         ?>
                     </div>
                 </form>
