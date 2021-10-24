@@ -1,18 +1,18 @@
 <?php include 'cabecera.php' ?>
 
 <h1>Items Disponibles</h1>
-	<table>
-		<thead>
-			<tr>
-				<th>Imagen</th>
-				<th>Item</th>
-				<th>Pujas</th>
-				<th>Precio</th>
-			</tr>
-		</thead>
-		<tbody>
 
-		</tbody>
-	</table>
+<?php
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+	$cat_id = $_GET['id'];
+	$items = getItems($cat_id);
+}else $items = getItems();
+
+drawItemTable($items);
+
+
+
+?>
+
 
 <?php include 'pie.php' ?>

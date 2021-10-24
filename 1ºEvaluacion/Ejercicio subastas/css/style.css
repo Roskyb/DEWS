@@ -10,6 +10,21 @@ body {
 	width: 100%;
 }
 
+.d-hidden {
+	display: none;
+}
+
+mark {
+	color: green;
+	font-size: 0.9rem;
+	background-color: transparent;
+}
+
+small {
+	color: red;
+	font-size: 0.9rem;
+}
+
 #header {
 	position: absolute;
 	top: 0px;
@@ -50,6 +65,10 @@ a:visited {
 	text-decoration: none;
 	border-bottom: 1px dotted #369;
 	color: #000;
+}
+
+td img {
+	object-fit: cover;
 }
 
 a:hover,
