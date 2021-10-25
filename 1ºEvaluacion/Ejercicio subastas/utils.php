@@ -21,9 +21,9 @@ function getItems($cat_id = "")
 {
     global $conn;
     if (!empty($cat_id)) {
-        $queryString = "SELECT nombre, id, descripcion FROM item WHERE id_cat = \"$cat_id\"";
+        $queryString = "SELECT nombre, id, descripcion, preciopartida FROM item WHERE id_cat = \"$cat_id\"";
     } else {
-        $queryString = "SELECT nombre, id, descripcion FROM item";
+        $queryString = "SELECT nombre, id, descripcion, preciopartida FROM item";
     }
     $result = mysqli_query($conn, $queryString);
     if (mysqli_errno($conn)) return [];
@@ -41,12 +41,15 @@ function getItemImages($id) {
 function getItemPujas($id) {
     global $conn;
     
-    $queryString = "SELECT * FROM puja WHERE id_item = \"$id\"";
+    $queryString = "SELECT * FROM puja WHERE id_item = \"$id\" ORDER BY cantidad DESC";
 
     $result = mysqli_query($conn, $queryString);
     if (mysqli_errno($conn)) return [];
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
+
+
+
 
 
 function getItem($id): array
@@ -70,6 +73,17 @@ function getItem($id): array
 }
 
 
+function addNewItem($nombre, $id_categoria, $descripcion, $fecha, $precio, $id_usuario){
+    global $conn;
+    $queryString = "INSERT INTO item (id_cat, id_user, nombre, descripcion, preciopartida, fechafin)
+                    VALUES (\"$id_categoria\", \"$id_usuario\",\"$nombre\",\"$descripcion\",\"$precio\",\"$fecha\" )";
+    $result = mysqli_query($conn, $queryString);
+    if (mysqli_errno($conn)) return [];
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
+
+
 
 function drawItemTable($items)
 {
@@ -90,14 +104,23 @@ function drawItemTable($items)
 
         foreach ($items as $item) {
             $images = getItemImages($item['id']);
-            $pujas = count(getItemPujas($item['id']));
+            $pujas = getItemPujas($item['id']);
+            $cantPujas = count($pujas);
+            $precio = isset($pujas[0]['cantidad']) ? $pujas[0]['cantidad'] : $item['preciopartida'];
             echo "<tr>";
-            echo "<td>" . "<img src='";
-            if(count($images) > 0) echo IMAGES . $images[0]['imagen'];
-            echo "' width='100' height='100'>" . "</td>";
+            echo "<td>";
+            if(count($images) > 0) {
+                echo "<img src='";
+                echo IMAGES . $images[0]['imagen'];
+                echo "' width='100' height='100'>";
+            }else {
+                 echo "NO IMAGEN";
+            }
+           
+            echo "</td>";
             echo "<td><a href='itemdetalles.php?id=" . $item['id'] . "'>" . $item['nombre'] . "</a></td>";
-            echo "<td>" . $pujas . "</td>";
-            echo "<td>" . '---------' . "€</td>";
+            echo "<td>" . $cantPujas . "</td>";
+            echo "<td>" . $precio . "€</td>";
             echo "</tr>";
         }
 
