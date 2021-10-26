@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `categoria` (
   `id` int(11) NOT NULL,
   `categoria` varchar(30) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=innoDB DEFAULT CHARSET=utf8 COLLATE=UTF8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -50,7 +50,7 @@ CREATE TABLE `imagen` (
   `id` int(11) NOT NULL,
   `id_item` int(11) DEFAULT NULL,
   `imagen` varchar(200) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=innoDB DEFAULT CHARSET=utf8 COLLATE=UTF8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `imagen`
@@ -73,7 +73,7 @@ CREATE TABLE `item` (
   `preciopartida` float DEFAULT NULL,
   `descripcion` varchar(200) DEFAULT NULL,
   `fechafin` datetime DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=innoDB DEFAULT CHARSET=utf8 COLLATE=UTF8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `item`
@@ -95,7 +95,7 @@ CREATE TABLE `puja` (
   `id_user` int(11) DEFAULT NULL,
   `cantidad` float DEFAULT NULL,
   `fecha` date DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=innoDB DEFAULT CHARSET=utf8 COLLATE=UTF8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `puja`
@@ -120,7 +120,7 @@ CREATE TABLE `usuario` (
   `cadenaverificacion` varchar(100) DEFAULT NULL,
   `activo` tinyint(4) DEFAULT NULL,
   `falso` tinyint(4) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=innoDB DEFAULT CHARSET=utf8 COLLATE=UTF8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`

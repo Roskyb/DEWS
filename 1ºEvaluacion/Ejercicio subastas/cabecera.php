@@ -4,7 +4,7 @@ include_once 'utils.php';
 
 
 session_start();
-
+mysqli_set_charset($conn, 'utf8');
 $_SESSION['ultimaPagina'] = ultimaPagina(); 
 
 
