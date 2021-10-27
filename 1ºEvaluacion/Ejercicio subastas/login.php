@@ -48,4 +48,4 @@ if (isset($_POST['login'])) {
 <a href="registro.php">
 	No tienes cuenta? Registrate!
 </a>
-<?php include 'pie.php' ?>
+<?php include 'pie.php' ?> 

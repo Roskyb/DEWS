@@ -8,6 +8,8 @@ function ultimaPagina() {
 };
 
 
+
+
 function getCategories(): array
 {
     global $conn;
@@ -78,8 +80,8 @@ function addNewItem($nombre, $id_categoria, $descripcion, $fecha, $precio, $id_u
     $queryString = "INSERT INTO item (id_cat, id_user, nombre, descripcion, preciopartida, fechafin)
                     VALUES (\"$id_categoria\", \"$id_usuario\",\"$nombre\",\"$descripcion\",\"$precio\",\"$fecha\" )";
     $result = mysqli_query($conn, $queryString);
-    if (mysqli_errno($conn)) return [];
-    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    if (mysqli_errno($conn)) return null;
+    return mysqli_insert_id($conn);
 }
 
 

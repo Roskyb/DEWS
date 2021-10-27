@@ -4,17 +4,14 @@ include_once 'utils.php';
 
 
 session_start();
-mysqli_set_charset($conn, 'utf8');
 $_SESSION['ultimaPagina'] = ultimaPagina(); 
-
-
-
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
+mysqli_set_charset($conn, 'utf8');
 
 $logged = false;
 if (isset($_SESSION['sesion_usuario'])) {
 	$logged = true;
 }
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
 ?>
 
 <html>

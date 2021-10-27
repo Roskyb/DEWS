@@ -24,8 +24,22 @@ if (isset($_POST['enviar'])) {
         $errores .= "- Precio: Deves introducir un precio correcto! <br>";
     }
 
+    
+
     $errores .= "</small>";
 
+    if($formularioCorrecto){
+        if(isset($fecha)){
+
+        }else {
+
+        }
+        addNewItem($_POST['nombre'], 
+        $_POST['categoria'], 
+        $_POST['descripcion'], $_POST['fecha'],
+        $_POST['precio'], 
+        $_SESSION['sesion_usuario']['id']);
+    }
  
 }
 
@@ -33,7 +47,7 @@ if (isset($_POST['enviar'])) {
 
 
 <h1>Añade nuevo item</h1>
-<?php echo !$formularioCorrecto ? $errores : ''  ?>
+<?php echo isset($formularioCorrecto) && !$formularioCorrecto ? (isset($errores) ? $errores :'') : ''  ?>
 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
     <table>
         <tr>
