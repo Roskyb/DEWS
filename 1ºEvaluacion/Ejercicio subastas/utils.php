@@ -23,9 +23,9 @@ function getItems($cat_id = "")
 {
     global $conn;
     if (!empty($cat_id)) {
-        $queryString = "SELECT nombre, id, descripcion, preciopartida FROM item WHERE id_cat = \"$cat_id\"";
+        $queryString = "SELECT nombre, id, descripcion, preciopartida, fechafin FROM item WHERE id_cat = \"$cat_id\"";
     } else {
-        $queryString = "SELECT nombre, id, descripcion, preciopartida FROM item";
+        $queryString = "SELECT nombre, id, descripcion, preciopartida, fechafin FROM item";
     }
     $result = mysqli_query($conn, $queryString);
     if (mysqli_errno($conn)) return [];
@@ -42,7 +42,6 @@ function getItemImages($id) {
 
 function getItemPujas($id) {
     global $conn;
-    
     $queryString = "SELECT * FROM puja WHERE id_item = \"$id\" ORDER BY cantidad DESC";
 
     $result = mysqli_query($conn, $queryString);
@@ -50,8 +49,44 @@ function getItemPujas($id) {
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
+function addPuja($itemId, $userId, $cantidad)
+{
+    global $conn;
+    $today = date('Y-m-d');
+    $queryString = "INSERT INTO puja (id_item, id_user, cantidad, fecha)
+                    VALUES (\"$itemId\", \"$userId\",\"$cantidad\",\"$today\" )";
+    $result = mysqli_query($conn, $queryString);
+    if (mysqli_errno($conn)) return -1;
+    return mysqli_insert_id($conn);
+}
 
 
+function getPujasFromUser($id)
+{
+    global $conn;
+    $queryString = "SELECT fecha FROM puja WHERE id_user = \"$id\" ";
+    $result = mysqli_query($conn, $queryString);
+    if (mysqli_errno($conn)) return -1;
+    $res = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $today = date('Y-m-d');
+    $pujasDelDia = 0;
+    foreach($res as $key => $value){
+        if($today == $value['fecha']) $pujasDelDia++;
+    }
+
+    return $pujasDelDia;
+}
+
+
+
+function getUserById($id)
+{
+    global $conn;
+    $queryString = "SELECT * FROM usuario WHERE id=\"$id\"";
+    $result = mysqli_query($conn, $queryString);
+    if (mysqli_errno($conn)) return [];
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
 
 
 function getItem($id): array

@@ -32,6 +32,10 @@ if (isset($_SESSION['sesion_usuario'])) {
 		if ($logged) {
 			echo "<a href='logout.php'>Logout</a>";
 			echo "<a href='newitem.php'>New Item</a>";
+			if($_SESSION['sesion_usuario']['id'] == 0){
+				echo "<a href='vencidas.php'>Vencidas</a>";
+				echo "<a href='anunciantes.php'>Anunciantes</a>";
+			}
 		} else {
 			echo "<a href='login.php'>Login</a>";
 		}
